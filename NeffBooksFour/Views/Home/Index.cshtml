@@ -1,0 +1,12 @@
+﻿@using NeffBooksFour.Data
+@model List<BOOK>
+@foreach (var book in Model)
+{
+    <p>
+        <span>Title: @book.Title</span>
+        <span>Author: @book.Author</span>
+    </p>
+}
+<div>
+    <a asp-action="Add">Add</a>
+</div>

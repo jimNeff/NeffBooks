@@ -1,0 +1,15 @@
+﻿@using NeffBooksFour.Data
+@model BOOK
+<form asp-action="Add">
+    <p>
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" />
+    </p>
+    <p>
+        <label asp-for="Author">Author</label>
+        <input asp-for="Author" />
+    </p>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
