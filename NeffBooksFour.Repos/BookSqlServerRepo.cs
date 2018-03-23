@@ -32,12 +32,24 @@ namespace NeffBooksFour.Repos
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var book = this.sqlContext.Books
+                .Where(bk => bk.ID == id)
+                .FirstOrDefault();
+
+            if (book != null)
+            {
+                this.sqlContext.Entry<BOOK>(book).State = EntityState.Deleted;
+                this.sqlContext.SaveChanges();
+            }
+
+            return true;
         }
 
         public BOOK GetById(int id)
         {
-            throw new NotImplementedException();
+            return this.sqlContext.Books
+                .Where(bk => bk.ID == id)
+                .FirstOrDefault();
         }
 
         public IQueryable<BOOK> List()
@@ -47,7 +59,16 @@ namespace NeffBooksFour.Repos
 
         public bool SaveChanges(BOOK item)
         {
-            throw new NotImplementedException();
+            try
+            {
+                this.sqlContext.Entry<BOOK>(item).State = EntityState.Modified;
+                this.sqlContext.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
